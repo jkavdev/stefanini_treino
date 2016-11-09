@@ -29,6 +29,14 @@ public class Veiculo implements Serializable {
 	@JoinColumn(name = "proprietario_id")
 	private Proprietario proprietario;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getPlaca() {
 		return this.placa;
 	}
