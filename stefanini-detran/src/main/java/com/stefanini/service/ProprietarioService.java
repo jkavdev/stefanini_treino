@@ -1,5 +1,7 @@
 package com.stefanini.service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -17,6 +19,11 @@ public class ProprietarioService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void incluir(Proprietario proprietario) {
 		proprietarioRepository.incluir(proprietario);
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<Proprietario> todos(){
+		return proprietarioRepository.todos();
 	}
 
 }

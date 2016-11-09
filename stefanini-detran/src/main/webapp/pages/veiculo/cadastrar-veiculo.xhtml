@@ -5,12 +5,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<ui:define name="corpo">
+	<ui:define name="conteudo">
 		<p:panel>
 			<h:form>
 				<p:panelGrid columns="2">
 					<p:outputLabel value="UF" for="uf" />
-					<p:inputText value="#{veiculoBean.veiculo.uf}" id="uf" />
+					<p:inputText value="#{agenteBean.agente.nome}" id="uf" />
 
 					<p:outputLabel for="pro" value="Proprietario " />
 					<p:selectOneMenu id="pro" value="#{veiculoBean.idProprietario}">
@@ -24,7 +24,7 @@
 						<f:selectItems value="#{veiculoBean.modelos}" var="p" itemLabel="#{p.descricao}" itemValue="#{p.id}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
-				<p:commandButton value="Cadastrar" action="#{veiculoBean.salva}" />
+				<p:commandButton value="Cadastrar" action="#{agenteBean.salva}" />
 			</h:form>
 		</p:panel>
 	</ui:define>

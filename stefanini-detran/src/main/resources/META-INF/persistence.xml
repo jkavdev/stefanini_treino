@@ -13,6 +13,8 @@
 		<class>com.stefanini.model.Agente</class>
 		<class>com.stefanini.model.Modelo</class>
 		<class>com.stefanini.model.Veiculo</class>
+		<class>com.stefanini.model.LocalInfracao</class>
+		<class>com.stefanini.model.TipoInfracao</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		

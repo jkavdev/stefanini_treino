@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,12 +17,18 @@ public class Veiculo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String placa;
 	private String uf;
+	@ManyToOne
+	@JoinColumn(name = "modelo_id")
 	private Modelo modelo;
+	@ManyToOne
+	@JoinColumn(name = "proprietario_id")
 	private Proprietario proprietario;
 
-	@Id
 	public String getPlaca() {
 		return this.placa;
 	}
@@ -38,8 +46,6 @@ public class Veiculo implements Serializable {
 		this.uf = uf;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "modelo_id")
 	public Modelo getModelo() {
 		return modelo;
 	}
@@ -48,8 +54,6 @@ public class Veiculo implements Serializable {
 		this.modelo = modelo;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "proprietario_id")
 	public Proprietario getProprietario() {
 		return proprietario;
 	}

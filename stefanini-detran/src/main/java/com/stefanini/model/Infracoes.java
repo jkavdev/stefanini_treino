@@ -11,15 +11,10 @@ public class Infracoes implements Serializable {
 
 	@Id
 	private int idInfracao;
-
 	private int idAgente;
-
 	private int idLocalInfracao;
-
 	private int idTipoInfracao;
-
 	private String placa;
-
 	private int velocidade;
 
 	public Infracoes() {
