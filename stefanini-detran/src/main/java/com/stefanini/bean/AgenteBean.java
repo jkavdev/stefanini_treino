@@ -43,6 +43,7 @@ public class AgenteBean implements Serializable {
 		} catch (Exception e) {
 			FacesUtil.adicionarMensagemErro(e.getMessage());
 		}
+		
 		limparFormulario();
 	}
 	

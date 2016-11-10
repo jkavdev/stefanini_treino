@@ -10,12 +10,15 @@ public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Column(length = 100)
 	private String endereco;
+	@Column(length = 100)
 	private String bairro;
+	@Column(length = 100)
 	private String cidade;
+	@Column(length = 4)
 	private String uf;
 
-	@Column(length = 100)
 	public String getEndereco() {
 		return endereco;
 	}
@@ -24,7 +27,6 @@ public class Endereco implements Serializable {
 		this.endereco = endereco;
 	}
 
-	@Column(length = 100)
 	public String getBairro() {
 		return bairro;
 	}
@@ -33,7 +35,6 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 	}
 
-	@Column(length = 100)
 	public String getCidade() {
 		return cidade;
 	}
@@ -42,7 +43,6 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 
-	@Column(length = 4)
 	public String getUf() {
 		return uf;
 	}

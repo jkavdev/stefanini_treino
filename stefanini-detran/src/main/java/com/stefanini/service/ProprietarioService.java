@@ -14,16 +14,41 @@ import com.stefanini.repository.ProprietarioRepository;
 public class ProprietarioService {
 
 	@Inject
-	private ProprietarioRepository proprietarioRepository;  
+	private ProprietarioRepository proprietarioRepository;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void incluir(Proprietario proprietario) {
+	public void incluir(Proprietario proprietario) throws Exception {
+
+		if (proprietario.getNome() == null || "".equals(proprietario.getNome().trim()) || 
+				proprietario.getCpf() == null || "".equals(proprietario.getCpf().trim())) {
+			throw new Exception("Nome ou CPF obrigatórios");
+		}
+
 		proprietarioRepository.incluir(proprietario);
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public List<Proprietario> todos(){
+	public List<Proprietario> todos() {
 		return proprietarioRepository.todos();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Proprietario porId(Long id) {
+		return this.proprietarioRepository.porId(id);
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remover(Proprietario proprietario) throws Exception {
+		try {
+			proprietario = porId(proprietario.getId());
+			if (proprietario != null) {
+				System.out.println(proprietario.getNome());
+				this.proprietarioRepository.excluir(proprietario);
+			}
+		} catch (Exception e) {
+			throw new Exception("Proprietario não pode ser excluído!");
+		}
+
 	}
 
 }

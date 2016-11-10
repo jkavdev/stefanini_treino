@@ -19,5 +19,13 @@ public class ProprietarioRepository {
 	public List<Proprietario> todos() {
 		return this.manager.createQuery("from Proprietario", Proprietario.class).getResultList();
 	}
+	
+	public Proprietario porId(Long id){
+		return this.manager.find(Proprietario.class, id);
+	}
+	
+	public void excluir(Proprietario proprietario){
+		this.manager.remove(proprietario);
+	}
 
 }

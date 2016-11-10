@@ -17,15 +17,23 @@ public class Infracao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "agente_id")
 	private Agente agente;
+	@ManyToOne
+	@JoinColumn(name = "local_infracao_id")
 	private LocalInfracao local;
+	@ManyToOne
+	@JoinColumn(name = "tipo_infracao_id")
 	private TipoInfracao tipo;
+	@ManyToOne
+	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;
 	private int velocidade;
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -34,8 +42,6 @@ public class Infracao implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "agente_id")
 	public Agente getAgente() {
 		return agente;
 	}
@@ -44,8 +50,6 @@ public class Infracao implements Serializable {
 		this.agente = agente;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "local_infracao_id")
 	public LocalInfracao getLocal() {
 		return local;
 	}
@@ -54,8 +58,6 @@ public class Infracao implements Serializable {
 		this.local = local;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "tipo_infracao_id")
 	public TipoInfracao getTipo() {
 		return tipo;
 	}
@@ -64,8 +66,6 @@ public class Infracao implements Serializable {
 		this.tipo = tipo;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "veiculo_id")
 	public Veiculo getVeiculo() {
 		return veiculo;
 	}

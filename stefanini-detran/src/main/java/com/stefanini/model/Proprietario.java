@@ -25,16 +25,24 @@ public class Proprietario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String cpf;
-	private String nome;
-	private Sexo sexo;
-	private Date dataNascimento;
-	private Endereco endereco = new Endereco();
-	private List<Telefone> telefones = new ArrayList<Telefone>();
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(length = 20)
+	private String cpf;
+	@Column(length = 100)
+	private String nome;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 2)
+	private Sexo sexo;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascimento")
+	private Date dataNascimento;
+	@Embedded
+	private Endereco endereco = new Endereco();
+	@OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
+	private List<Telefone> telefones = new ArrayList<Telefone>();
+
 	public Long getId() {
 		return id;
 	}
@@ -43,7 +51,6 @@ public class Proprietario implements Serializable {
 		this.id = id;
 	}
 
-	@Column(length = 20)
 	public String getCpf() {
 		return cpf;
 	}
@@ -52,7 +59,6 @@ public class Proprietario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(length = 100)
 	public String getNome() {
 		return nome;
 	}
@@ -61,8 +67,6 @@ public class Proprietario implements Serializable {
 		this.nome = nome;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 2)
 	public Sexo getSexo() {
 		return sexo;
 	}
@@ -71,8 +75,6 @@ public class Proprietario implements Serializable {
 		this.sexo = sexo;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "data_nascimento")
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -81,7 +83,6 @@ public class Proprietario implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	@Embedded
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -90,7 +91,6 @@ public class Proprietario implements Serializable {
 		this.endereco = endereco;
 	}
 
-	@OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
 	public List<Telefone> getTelefones() {
 		return telefones;
 	}

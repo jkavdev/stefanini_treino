@@ -18,13 +18,17 @@ public class Agente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String nome;
-	private Date dataContratacao;
-	private Integer tempoServico;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(length = 50)
+	private String nome;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_contratacao")
+	private Date dataContratacao;
+	@Column(name = "tempo_servico")
+	private Integer tempoServico;
+
 	public Long getId() {
 		return id;
 	}
@@ -33,7 +37,6 @@ public class Agente implements Serializable {
 		this.id = id;
 	}
 
-	@Column(length = 50)
 	public String getNome() {
 		return nome;
 	}
@@ -42,8 +45,6 @@ public class Agente implements Serializable {
 		this.nome = nome;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "data_contratacao")
 	public Date getDataContratacao() {
 		return dataContratacao;
 	}
@@ -52,7 +53,6 @@ public class Agente implements Serializable {
 		this.dataContratacao = dataContratacao;
 	}
 
-	@Column(name = "tempo_servico")
 	public Integer getTempoServico() {
 		return tempoServico;
 	}

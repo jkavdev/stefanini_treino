@@ -17,12 +17,15 @@ public class Modelo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String descricao;
-	private Categoria categoria;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(length = 255)
+	private String descricao;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 45)
+	private Categoria categoria;
+
 	public Long getId() {
 		return id;
 	}
@@ -31,7 +34,6 @@ public class Modelo implements Serializable {
 		this.id = id;
 	}
 
-	@Column(length = 255)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -40,8 +42,6 @@ public class Modelo implements Serializable {
 		this.descricao = descricao;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 45)
 	public Categoria getCategoria() {
 		return categoria;
 	}

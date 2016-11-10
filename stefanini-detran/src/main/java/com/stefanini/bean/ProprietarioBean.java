@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,6 +14,7 @@ import com.stefanini.model.Sexo;
 import com.stefanini.model.Telefone;
 import com.stefanini.model.TipoTelefone;
 import com.stefanini.service.ProprietarioService;
+import com.stefanini.util.jsf.FacesUtil;
 
 @Named
 @SessionScoped
@@ -24,8 +26,15 @@ public class ProprietarioBean implements Serializable {
 	private ProprietarioService proprietarioService;
 	@Inject
 	private Proprietario proprietario;
+	private Proprietario proprietarioSelecionado;
+	private List<Proprietario> proprietarios;
 	@Inject
 	private Telefone telefone;
+
+	@PostConstruct
+	public void init() {
+		proprietarios = proprietarioService.todos();
+	}
 
 	public String novoProprietario() {
 		proprietario = new Proprietario();
@@ -34,9 +43,16 @@ public class ProprietarioBean implements Serializable {
 	}
 
 	public String salvar() {
-		proprietarioService.incluir(proprietario);
+		try {
+			proprietarioService.incluir(proprietario);
+			FacesUtil.adicionarMensagemInfo("Proprietário " + proprietario.getNome() + " cadastrado com sucesso!");
+		} catch (Exception e) {
+			FacesUtil.adicionarMensagemErro(e.getMessage());
+		}
+		
+		limparFormulario();
 
-		return "proprietario-sucesso?faces-redirect=true";
+		return "lista-proprietario?faces-redirect=true";
 	}
 
 	public void salvarTelefone() {
@@ -45,6 +61,22 @@ public class ProprietarioBean implements Serializable {
 			this.telefone = new Telefone();
 		}
 	}
+	
+	public void excluir(){
+		try {
+			proprietarioService.remover(proprietarioSelecionado);
+			FacesUtil.adicionarMensagemInfo("Proprietario " + proprietarioSelecionado.getNome() + " excluído com sucesso!");
+		} catch (Exception e) {
+			FacesUtil.adicionarMensagemErro(e.getMessage());
+		}
+		
+		limparFormulario();
+	}
+	
+	private void limparFormulario() {
+		proprietario = new Proprietario();
+		proprietarios = null;
+	}
 
 	public Proprietario getProprietario() {
 		return proprietario;
@@ -52,6 +84,21 @@ public class ProprietarioBean implements Serializable {
 
 	public void setProprietario(Proprietario proprietario) {
 		this.proprietario = proprietario;
+	}
+
+	public Proprietario getProprietarioSelecionado() {
+		return proprietarioSelecionado;
+	}
+
+	public void setProprietarioSelecionado(Proprietario proprietarioSelecionado) {
+		this.proprietarioSelecionado = proprietarioSelecionado;
+	}
+
+	public List<Proprietario> getProprietarios() {
+		if(proprietarios == null){
+			proprietarios = proprietarioService.todos();
+		}
+		return proprietarios;
 	}
 
 	public Telefone getTelefone() {

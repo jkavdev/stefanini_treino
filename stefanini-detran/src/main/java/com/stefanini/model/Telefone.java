@@ -19,6 +19,8 @@ public class Telefone implements Serializable {
 
 	@EmbeddedId
 	private TelefonePK id = new TelefonePK();
+	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
 	private TipoTelefone tipo;
 	@ManyToOne
 	@JoinColumn(name = "proprietario_id")
@@ -32,8 +34,6 @@ public class Telefone implements Serializable {
 		this.id = id;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
 	public TipoTelefone getTipo() {
 		return tipo;
 	}
