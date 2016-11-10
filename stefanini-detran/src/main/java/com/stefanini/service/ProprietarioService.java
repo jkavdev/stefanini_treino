@@ -36,6 +36,11 @@ public class ProprietarioService {
 	public Proprietario porId(Long id) {
 		return this.proprietarioRepository.porId(id);
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Proprietario comTelefone(Long id){
+		return this.proprietarioRepository.comTelefone(id);
+	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remover(Proprietario proprietario) throws Exception {
@@ -48,7 +53,6 @@ public class ProprietarioService {
 		} catch (Exception e) {
 			throw new Exception("Proprietario não pode ser excluído!");
 		}
-
 	}
 
 }

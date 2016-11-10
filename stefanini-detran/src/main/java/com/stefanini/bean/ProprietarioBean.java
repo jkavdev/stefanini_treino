@@ -73,6 +73,10 @@ public class ProprietarioBean implements Serializable {
 		limparFormulario();
 	}
 	
+	public void buscarProprietarioComTelefone(){
+		proprietarioSelecionado = this.proprietarioService.comTelefone(proprietarioSelecionado.getId());
+	}
+	
 	private void limparFormulario() {
 		proprietario = new Proprietario();
 		proprietarios = null;

@@ -28,6 +28,12 @@
 				<p:column headerText="Sexo">
 					<h:outputLabel value="#{proprietario.sexo.descricao}" />
 				</p:column>
+				<p:column headerText="Telefones" style="width: 100px; text-align: center">
+	    			<p:commandButton icon="ui-icon-extlink" title="Telefones" action="#{proprietarioBean.buscarProprietarioComTelefone}"
+	    					process="@this" onclick="PF('mostraTelefones').show();" >
+	    				<f:setPropertyActionListener target="#{proprietarioBean.proprietarioSelecionado}" value="#{proprietario}" />
+	    			</p:commandButton>
+	    		</p:column>
 				<p:column style="width: 100px; text-align: center">
 	    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{proprietarioBean.excluir}"
 							process="@this" update=":frmProprietario">
@@ -35,6 +41,14 @@
 					</p:commandButton>
 	    		</p:column>
 		    </p:dataTable>
+		    
+		    <p:dialog id="mostraTelefonesDialog" header="Telefones" widgetVar="mostraTelefones" modal="true">
+    			<p:dataList value="#{proprietarioBean.proprietarioSelecionado.telefones}" var="telefone" itemType="disc"
+    					rendered="#{not empty proprietarioBean.proprietarioSelecionado.telefones}">
+    				#{telefone.id.ddd} - #{telefone.id.numero}
+    			</p:dataList>
+    			<h:outputText value="Nenhum telefone" rendered="#{empty proprietarioBean.proprietarioSelecionado.telefones}"/>
+			</p:dialog>
 			
 		</h:form>
 		

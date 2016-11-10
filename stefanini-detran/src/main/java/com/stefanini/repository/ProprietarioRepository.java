@@ -19,12 +19,23 @@ public class ProprietarioRepository {
 	public List<Proprietario> todos() {
 		return this.manager.createQuery("from Proprietario", Proprietario.class).getResultList();
 	}
-	
-	public Proprietario porId(Long id){
+
+	public Proprietario porId(Long id) {
 		return this.manager.find(Proprietario.class, id);
 	}
-	
-	public void excluir(Proprietario proprietario){
+
+	public Proprietario comTelefone(Long id) {
+		String jpql = "select p from Proprietario p "
+				+ "JOIN p.telefones t "
+				+ "where p.id = :id";
+		
+		return this.manager.createQuery(jpql,
+				Proprietario.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
+
+	public void excluir(Proprietario proprietario) {
 		this.manager.remove(proprietario);
 	}
 
