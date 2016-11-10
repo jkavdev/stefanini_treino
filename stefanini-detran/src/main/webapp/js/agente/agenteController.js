@@ -33,9 +33,14 @@ App.controller('AgenteCtrl', function($scope, AgenteService, $route,$routeParams
 	}
 	
 	$scope.cadastrar = function(agente){
-			AgenteService.create(agente).then(function(data){
-				$location.path('/');
-			});
+		var item = {
+				nome: agente.nome,
+				dataContratacao: agente.dataContratacao,
+				tempoServico: agente.tempoServico,
+		}
+		AgenteService.create(item).then(function(data){
+			$location.path('/');
+		});
 	}
 	
 });

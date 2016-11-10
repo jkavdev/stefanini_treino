@@ -19,7 +19,7 @@ public class ModeloBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
+	@Inject 
 	private ModeloService modeloService;
 	@Inject
 	private Modelo modelo;
