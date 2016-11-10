@@ -41,12 +41,16 @@ public class AgenteService {
 		} catch (Exception e) {
 			throw new Exception("Agente não pode ser excluído!");
 		}
-
 	}
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public List<Agente> todos() {
 		return this.agenteRepository.todos();
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void alterar(Agente agente){
+		this.agenteRepository.alterar(agente);
 	}
 
 }

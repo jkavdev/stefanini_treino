@@ -6,11 +6,11 @@ App.factory("AgenteService", function($http, API){
 		create: function(item){
 			return $http.post(API+'agente', item);
 		},
-		update: function(item, id){
-			return $http.put(API+'agente/'+id, item);	
+		update: function(item){
+			return $http.post(API+'agente/alterar', item);	
 		},
-		delete: function(id){
-			return $http.remove(API+'agente/'+id);
+		remove: function(item){
+			return $http.post(API+'agente/delete', item);
 		}
 	}
 })

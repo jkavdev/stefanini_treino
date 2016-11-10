@@ -23,21 +23,37 @@ public class AgenteController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Agente> get() {
+	public List<Agente> todos() {
 		return agenteService.todos();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String add(Agente agente) {
+	public void adicionar(Agente agente) {
 		try {
 			agenteService.incluir(agente);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Erro! " + e.getMessage());
 		}
+	}
 
-		return "Agente cadastrado com sucesso!";
+	@Path("/delete")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void excluir(Agente agente) {
+		try {
+			agenteService.remover(agente);
+		} catch (Exception e) {
+			System.out.println("Erro! " + e.getMessage());
+		}
+	}
+
+	@Path("/alterar")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void alterar(Agente agente) {
+		agenteService.alterar(agente);
 	}
 
 }

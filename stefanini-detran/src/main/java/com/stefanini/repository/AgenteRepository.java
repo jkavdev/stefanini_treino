@@ -27,5 +27,9 @@ public class AgenteRepository {
 	public void excluir(Agente agente){
 		this.manager.remove(agente);
 	}
+	
+	public void alterar(Agente agente){
+		this.manager.merge(agente);
+	}
 
 }
