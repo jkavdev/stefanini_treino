@@ -3,14 +3,17 @@ package com.stefanini.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "agentes")
 public class Agente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +33,7 @@ public class Agente implements Serializable {
 		this.id = id;
 	}
 
+	@Column(length = 50)
 	public String getNome() {
 		return nome;
 	}
@@ -39,6 +43,7 @@ public class Agente implements Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "data_contratacao")
 	public Date getDataContratacao() {
 		return dataContratacao;
 	}
@@ -47,6 +52,7 @@ public class Agente implements Serializable {
 		this.dataContratacao = dataContratacao;
 	}
 
+	@Column(name = "tempo_servico")
 	public Integer getTempoServico() {
 		return tempoServico;
 	}

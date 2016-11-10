@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import com.stefanini.model.Agente;
 import com.stefanini.service.AgenteService;
+import com.stefanini.util.jsf.FacesUtil;
 
 @Named
 @SessionScoped
@@ -21,6 +22,7 @@ public class AgenteBean implements Serializable {
 	private AgenteService agenteService;
 	@Inject
 	private Agente agente;
+	private Agente agenteSelecionado;
 	private List<Agente> agentes;
 
 	@PostConstruct
@@ -35,7 +37,23 @@ public class AgenteBean implements Serializable {
 	}
 
 	public void salva() {
-		agenteService.incluir(agente);
+		try {
+			agenteService.incluir(agente);
+			FacesUtil.adicionarMensagemInfo("Agente " + agente.getNome() + " cadastrado com sucesso!");
+		} catch (Exception e) {
+			FacesUtil.adicionarMensagemErro(e.getMessage());
+		}
+		limparFormulario();
+	}
+	
+	public void excluir(){
+		try {
+			agenteService.remover(agenteSelecionado);
+			FacesUtil.adicionarMensagemInfo("Agente " + agenteSelecionado.getNome() + " excluído com sucesso!");
+		} catch (Exception e) {
+			FacesUtil.adicionarMensagemErro(e.getMessage());
+		}
+		
 		limparFormulario();
 	}
 
@@ -57,6 +75,14 @@ public class AgenteBean implements Serializable {
 
 	public void setAgente(Agente agente) {
 		this.agente = agente;
+	}
+
+	public Agente getAgenteSelecionado() {
+		return agenteSelecionado;
+	}
+
+	public void setAgenteSelecionado(Agente agenteSelecionado) {
+		this.agenteSelecionado = agenteSelecionado;
 	}
 
 }

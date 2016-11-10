@@ -17,8 +17,31 @@ public class AgenteService {
 	private AgenteRepository agenteRepository;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void incluir(Agente agente) {
+	public void incluir(Agente agente) throws Exception {
+
+		if (agente.getNome() == null || "".equals(agente.getNome().trim()) || agente.getDataContratacao() == null) {
+			throw new Exception("Nome ou data de contratação obrigatórios");
+		}
+
 		agenteRepository.incluir(agente);
+	}
+
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Agente porId(Long id) {
+		return this.agenteRepository.porId(id);
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remover(Agente agente) throws Exception {
+		try {
+			agente = porId(agente.getId());
+			if (agente != null) {
+				this.agenteRepository.excluir(agente);
+			}
+		} catch (Exception e) {
+			throw new Exception("Agente não pode ser excluído!");
+		}
+
 	}
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)

@@ -19,5 +19,13 @@ public class AgenteRepository {
 	public List<Agente> todos() {
 		return this.manager.createQuery("from Agente", Agente.class).getResultList();
 	}
+	
+	public Agente porId(Long id){
+		return this.manager.find(Agente.class, id);
+	}
+	
+	public void excluir(Agente agente){
+		this.manager.remove(agente);
+	}
 
 }

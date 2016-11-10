@@ -15,10 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "proprietarios")
 public class Proprietario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -70,6 +72,7 @@ public class Proprietario implements Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascimento")
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}

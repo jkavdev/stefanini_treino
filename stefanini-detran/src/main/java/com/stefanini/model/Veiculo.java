@@ -20,7 +20,9 @@ public class Veiculo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(length = 15, nullable = false)
 	private String placa;
+	@Column(length = 4)
 	private String uf;
 	@ManyToOne
 	@JoinColumn(name = "modelo_id")
@@ -45,7 +47,6 @@ public class Veiculo implements Serializable {
 		this.placa = placa;
 	}
 
-	@Column(length = 4, nullable = false)
 	public String getUf() {
 		return this.uf;
 	}

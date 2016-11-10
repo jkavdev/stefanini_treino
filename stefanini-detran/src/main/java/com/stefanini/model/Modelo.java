@@ -9,8 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "modelos_veiculos")
 public class Modelo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +31,7 @@ public class Modelo implements Serializable {
 		this.id = id;
 	}
 
-	@Column(length = 50)
+	@Column(length = 255)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -39,6 +41,7 @@ public class Modelo implements Serializable {
 	}
 
 	@Enumerated(EnumType.STRING)
+	@Column(length = 45)
 	public Categoria getCategoria() {
 		return categoria;
 	}
