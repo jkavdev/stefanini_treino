@@ -7,7 +7,7 @@
 
 	<ui:define name="corpo">
 		<p:panel>
-			<h:form>
+			<h:form id="frmTipo">
 				<p:outputLabel value="Cadastrar tipo infração" />
 				<p:panelGrid columns="2">
 
@@ -22,7 +22,31 @@
 				
 				<br />
 				
-				<p:commandButton value="Cadastrar" action="#{tipoInfracaoBean.cadastrar()}" />
+				<p:commandButton value="Cadastrar" action="#{tipoInfracaoBean.cadastrar()}" update="@form"/>
+				
+				<p:dataTable id="tableTipo" value="#{tipoInfracaoBean.tipos}" var="tipo">			
+					<p:column headerText="ID">
+						<h:outputLabel value="#{tipo.id}" />
+					</p:column>
+					
+					<p:column headerText="Descricao">
+						<h:outputLabel value="#{tipo.descricaoTipoInfracao}" />
+					</p:column>
+					
+					<p:column headerText="Valor">
+						<h:outputLabel value="#{tipo.valor}" >
+							<f:convertNumber type="currency"/>
+						</h:outputLabel>
+					</p:column>
+					
+					<p:column style="width: 100px; text-align: center">
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{tipoInfracaoBean.excluir}"
+								process="@this" update=":frmTipo">
+							<f:setPropertyActionListener target="#{tipoInfracaoBean.tipoSelecionado}" value="#{tipo}" />
+						</p:commandButton>
+		    		</p:column>
+			    </p:dataTable>
+				
 			</h:form>
 		</p:panel>
 	</ui:define>

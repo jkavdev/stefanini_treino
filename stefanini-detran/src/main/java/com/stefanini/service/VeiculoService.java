@@ -47,11 +47,11 @@ public class VeiculoService {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void incluir(Veiculo veiculo) throws Exception {
-		Veiculo veiculoDoBanco = porPlaca(veiculo.getPlaca());
-
-		if (veiculoDoBanco != null && veiculoDoBanco.getPlaca().equalsIgnoreCase(veiculo.getPlaca())) {
-			throw new Exception("Já existe um veiculo cadastrado com esta placa!");
-		}
+//		Veiculo veiculoDoBanco = porPlaca(veiculo.getPlaca());
+//
+//		if (veiculoDoBanco != null && veiculoDoBanco.getPlaca().equalsIgnoreCase(veiculo.getPlaca())) {
+//			throw new Exception("Já existe um veiculo cadastrado com esta placa!");
+//		}
 
 		veiculoRepository.incluir(veiculo);
 	}

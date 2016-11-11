@@ -27,8 +27,15 @@ public class TipoService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public TipoInfracao buscar(Integer id) {
+	public TipoInfracao buscar(Long id) {
 		return tipoRepository.busca(id);
+	}
+
+	public void excluir(TipoInfracao tipoSelecionado) {
+		tipoSelecionado = buscar(tipoSelecionado.getId());
+		if (tipoSelecionado != null) {
+			tipoRepository.excluir(tipoSelecionado);
+		}
 	}
 
 }

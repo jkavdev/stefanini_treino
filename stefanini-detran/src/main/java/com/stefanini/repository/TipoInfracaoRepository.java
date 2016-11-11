@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.stefanini.model.TipoInfracao;
-import com.stefanini.model.Veiculo;
 
 public class TipoInfracaoRepository {
 
@@ -21,7 +20,7 @@ public class TipoInfracaoRepository {
 		this.manager.merge(tipo);
 	}
 
-	public TipoInfracao busca(Integer id) {
+	public TipoInfracao busca(Long id) {
 		return this.manager.find(TipoInfracao.class, id);
 	}
 

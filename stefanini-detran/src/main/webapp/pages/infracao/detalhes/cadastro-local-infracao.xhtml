@@ -7,7 +7,7 @@
 
 	<ui:define name="corpo">
 		<p:panel>
-			<h:form>
+			<h:form id="frmLocal">
 				<p:outputLabel value="Cadastrar Local infração" />
 				<p:panelGrid columns="2">
 				
@@ -18,7 +18,30 @@
 					<p:inputMask id="vel" value="#{localInfracaoBean.local.velocidadePermitida}" mask="999"/>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="Cadastrar" action="#{localInfracaoBean.cadastrar()}" />
+				
+				<p:commandButton value="Cadastrar" action="#{localInfracaoBean.cadastrar}" update="@form"/>
+				
+				<p:dataTable id="tableLocal" value="#{localInfracaoBean.locais}" var="local">
+			
+					<p:column headerText="ID">
+						<h:outputLabel value="#{local.id}" />
+					</p:column>
+					
+					<p:column headerText="Descricao">
+						<h:outputLabel value="#{local.descricaoLocalInfracao}" />
+					</p:column>
+					
+					<p:column headerText="Velocidade Permitida">
+						<h:outputLabel value="#{local.velocidadePermitida}" />
+					</p:column>
+					
+					<p:column style="width: 100px; text-align: center">
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{localInfracaoBean.excluir}"
+								process="@this" update=":frmLocal">
+							<f:setPropertyActionListener target="#{localInfracaoBean.localSelecionado}" value="#{local}" />
+						</p:commandButton>
+		    		</p:column>
+			    </p:dataTable>
 			</h:form>
 		</p:panel>
 	</ui:define>

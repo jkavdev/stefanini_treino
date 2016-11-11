@@ -14,8 +14,15 @@
 			<p:panelGrid columns="2">			
 				<p:outputLabel value="Nome" for="nome"/>
 				<p:inputText id="nome" value="#{agenteBean.agente.nome}" />
+				
 				<p:outputLabel value="Data de Contração" for="dataContratacao"/>
-				<p:calendar id="dataContratacao" value="#{agenteBean.agente.dataContratacao}" />
+				<p:panel id="data">
+					<p:calendar id="dataContratacao" value="#{agenteBean.dataContratacao}" />
+					<p:commandButton value="Verificar" update="@form" action="#{agenteBean.verificar}" />
+				</p:panel>
+				
+				<p:outputLabel rendered="#{agenteBean.verificado}" id="verificado" value="Tempo serviço:" for="tempo" />
+				<p:inputText rendered="#{agenteBean.verificado}" value="#{agenteBean.agente.tempoServico}" id="tempo" />				
 			</p:panelGrid>
 
 			<p:commandButton value="Cadastrar agente" action="#{agenteBean.salva}" update="@form" style="margin-top: 10px; margin-bottom: 10px;"/>

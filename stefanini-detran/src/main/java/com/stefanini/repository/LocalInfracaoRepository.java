@@ -20,12 +20,16 @@ public class LocalInfracaoRepository {
 		this.manager.merge(local);
 	}
 
-	public LocalInfracao busca(Integer id) {
+	public LocalInfracao busca(Long id) {
 		return this.manager.find(LocalInfracao.class, id);
 	}
 
 	public List<LocalInfracao> lista() {
 		return this.manager.createQuery("select l from LocalInfracao l", LocalInfracao.class).getResultList();
+	}
+	
+	public void excluir(LocalInfracao local){
+		this.manager.remove(local);
 	}
 
 }

@@ -25,7 +25,11 @@ public class InfracaoRepository {
 	}
 
 	public List<Infracao> lista() {
-		return this.manager.createQuery("select l from infracao l", Infracao.class).getResultList();
+		return this.manager.createQuery("select l from Infracao l", Infracao.class).getResultList();
+	}
+
+	public void excluir(Infracao infracaoSelecionado) {
+		this.manager.remove(infracaoSelecionado);
 	}
 
 }

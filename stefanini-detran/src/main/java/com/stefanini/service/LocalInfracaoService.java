@@ -27,7 +27,16 @@ public class LocalInfracaoService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public LocalInfracao buscar(Integer id) {
+	public LocalInfracao buscar(Long id) {
 		return localRepositorio.busca(id);
 	}
+
+	public void excluir(LocalInfracao local) {
+		local = buscar(local.getId());
+
+		if (local != null) {
+			this.localRepositorio.excluir(local);
+		}
+	}
+
 }

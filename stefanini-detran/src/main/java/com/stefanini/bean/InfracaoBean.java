@@ -89,7 +89,7 @@ public class InfracaoBean implements Serializable {
 		return results;
 	}
 
-	public void cadastrar() {
+	public String cadastrar() {
 		Agente agente = getAgente(agenteId);
 		LocalInfracao local = getLocal(localId);
 		TipoInfracao tipo = getTipo(tipoId);
@@ -101,6 +101,8 @@ public class InfracaoBean implements Serializable {
 		infracao.setVeiculo(v);
 
 		infracaoService.incluir(infracao);
+		
+		return "lista-infracao?faces-redirect=true";
 	}
 
 	public Long getAgenteId() {
