@@ -25,5 +25,22 @@ public class ModeloService {
 	public List<Modelo> todos() {
 		return this.modeloRepository.todos();
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Modelo porId(Long id) {
+		return this.modeloRepository.porId(id);
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remover(Modelo modelogente) throws Exception {
+		try {
+			modelogente = porId(modelogente.getId());
+			if (modelogente != null) {
+				this.modeloRepository.excluir(modelogente);
+			}
+		} catch (Exception e) {
+			throw new Exception("Modelo não pode ser excluído!");
+		}
+	}
 
 }

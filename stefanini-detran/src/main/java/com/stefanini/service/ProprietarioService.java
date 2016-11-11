@@ -18,6 +18,8 @@ public class ProprietarioService {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void incluir(Proprietario proprietario) throws Exception {
+		
+		System.out.println(proprietario.getNome() + proprietario.getCpf());
 
 		if (proprietario.getNome() == null || "".equals(proprietario.getNome().trim()) || 
 				proprietario.getCpf() == null || "".equals(proprietario.getCpf().trim())) {
@@ -38,7 +40,7 @@ public class ProprietarioService {
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Proprietario comTelefone(Long id){
+	public Proprietario comTelefone(Long id) throws Exception{
 		return this.proprietarioRepository.comTelefone(id);
 	}
 

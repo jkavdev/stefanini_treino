@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.stefanini.model.TipoInfracao;
+import com.stefanini.model.Veiculo;
 
 public class TipoInfracaoRepository {
 
@@ -26,5 +27,9 @@ public class TipoInfracaoRepository {
 
 	public List<TipoInfracao> lista() {
 		return this.manager.createQuery("select t from TipoInfracao t", TipoInfracao.class).getResultList();
+	}
+
+	public void excluir(TipoInfracao tipo) {
+		this.manager.remove(tipo);
 	}
 }

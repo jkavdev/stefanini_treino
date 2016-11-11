@@ -25,10 +25,35 @@
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Placa:" for="placa" />
-					<p:inputText value="#{veiculoBean.veiculo.placa}" id="placa" />
+					<p:inputMask id="placa" value="#{veiculoBean.veiculo.placa}" mask="aa*-9999"/>
 				</p:panelGrid>
 				
-				<p:commandButton value="Cadastrar" action="#{veiculoBean.salva}" />
+				<p:commandButton value="Cadastrar" action="#{veiculoBean.salva}" update="@form"/>
+				
+				<p:dataTable id="tableVeiculos" value="#{veiculoBean.veiculos}" var="veiculo">
+					<p:column headerText="ID">
+						<h:outputLabel value="#{veiculo.id}" />
+					</p:column>
+					
+					<p:column headerText="Modelo">
+						<h:outputLabel value="#{veiculo.modelo.descricao} - #{veiculo.modelo.categoria}" />
+					</p:column>
+					
+					<p:column headerText="Placa">
+						<h:outputLabel value="#{veiculo.placa}" />
+					</p:column>
+					
+					<p:column headerText="Proprietário">
+						<h:outputLabel value="#{veiculo.proprietario.nome}" />
+					</p:column>
+					
+					<p:column style="width: 100px; text-align: center">
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{veiculoBean.excluir}"
+								process="@this" update="@form">
+							<f:setPropertyActionListener target="#{veiculoBean.veiculoSelecionado}" value="#{veiculo}" />
+						</p:commandButton>
+		    		</p:column>
+			    </p:dataTable>
 			</h:form>
 		</p:panel>
 	</ui:define>

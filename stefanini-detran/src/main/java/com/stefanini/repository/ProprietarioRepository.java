@@ -24,15 +24,19 @@ public class ProprietarioRepository {
 		return this.manager.find(Proprietario.class, id);
 	}
 
-	public Proprietario comTelefone(Long id) {
-		String jpql = "select p from Proprietario p "
-				+ "JOIN p.telefones t "
-				+ "where p.id = :id";
+	public Proprietario comTelefone(Long id) throws Exception {
+		try {
+			String jpql = "select p from Proprietario p "
+					+ "JOIN p.telefones t "
+					+ "where p.id = :id";
+			
+			return  this.manager.createQuery(jpql, Proprietario.class)
+					.setParameter("id", id)
+					.getSingleResult();
+		} catch (Exception e) {
+			throw new Exception("Nenhum Objeto encontrado" + e.getMessage());
+		}
 		
-		return this.manager.createQuery(jpql,
-				Proprietario.class)
-				.setParameter("id", id)
-				.getSingleResult();
 	}
 
 	public void excluir(Proprietario proprietario) {

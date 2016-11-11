@@ -15,7 +15,8 @@
 					<p:inputText id="desc" value="#{tipoInfracaoBean.tipo.descricaoTipoInfracao}" />
 
 					<p:outputLabel value="Valor: " for="valor" />
-					<p:inputText id="valor" value="#{tipoInfracaoBean.tipo.valor}" />
+					<p:inputNumber id="valor" value="#{tipoInfracaoBean.tipo.valor}" symbol="R$ " symbolPosition="p" 
+                               decimalSeparator="," thousandSeparator="." /> 
 
 				</p:panelGrid>
 				

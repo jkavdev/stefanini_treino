@@ -30,12 +30,6 @@ public class AgenteBean implements Serializable {
 		agentes = agenteService.todos();
 	}
 
-	public String novoAgente() {
-		agente = new Agente();
-
-		return "cadastro-agente";
-	}
-
 	public void salva() {
 		try {
 			agenteService.incluir(agente);

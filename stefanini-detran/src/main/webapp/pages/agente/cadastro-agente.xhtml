@@ -8,6 +8,7 @@
 	<ui:define name="titulo">Cadastro de Agentes</ui:define>
 
 	<ui:define name="corpo">
+	
 		<h:form id="frmAgente">
 		
 			<p:panelGrid columns="2">			
@@ -20,17 +21,21 @@
 			<p:commandButton value="Cadastrar agente" action="#{agenteBean.salva}" update="@form" style="margin-top: 10px; margin-bottom: 10px;"/>
 			
 			<p:dataTable id="tableAgentes" value="#{agenteBean.agentes}" var="agente">
+			
 				<p:column headerText="ID">
 					<h:outputLabel value="#{agente.id}" />
 				</p:column>
+				
 				<p:column headerText="Nome">
 					<h:outputLabel value="#{agente.nome}" />
 				</p:column>
+				
 				<p:column headerText="Data de Contratação">
 					<h:outputLabel value="#{agente.dataContratacao}" >
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputLabel>
 				</p:column>
+				
 				<p:column style="width: 100px; text-align: center">
 	    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{agenteBean.excluir}"
 							process="@this" update=":frmAgente">

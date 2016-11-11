@@ -20,4 +20,12 @@ public class ModeloRepository {
 		return this.manager.createQuery("from Modelo", Modelo.class).getResultList();
 	}
 
+	public Modelo porId(Long id) {
+		return this.manager.find(Modelo.class, id);
+	}
+
+	public void excluir(Modelo modelo) {
+		this.manager.remove(modelo);
+	}
+
 }

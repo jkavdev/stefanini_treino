@@ -1,8 +1,9 @@
 package com.stefanini.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -10,7 +11,7 @@ import com.stefanini.model.TipoInfracao;
 import com.stefanini.service.TipoService;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class TipoInfracaoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,11 +19,27 @@ public class TipoInfracaoBean implements Serializable {
 	@Inject
 	private TipoInfracao tipo;
 	@Inject
-	private TipoService service;
+	private TipoService tipoService;
+	private List<TipoInfracao> tipos;
 
 	public void cadastrar() {
-		service.incluir(tipo);
+		tipoService.incluir(tipo);
+	}
 
+	public void limparFormulario() {
+		tipo = new TipoInfracao();
+		tipos = null;
+	}
+	
+//	public void excluir(){
+//		tipoService.e
+//	}
+
+	public List<TipoInfracao> getTipos() {
+		if (tipos == null) {
+			tipos = tipoService.lista();
+		}
+		return tipos;
 	}
 
 	public TipoInfracao getTipo() {

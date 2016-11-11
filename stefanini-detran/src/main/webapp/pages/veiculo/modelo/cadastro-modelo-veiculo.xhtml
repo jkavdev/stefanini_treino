@@ -24,20 +24,29 @@
 			</p:panelGrid>
 			
 			<br />
-			<p:commandButton value="Salvar modelo de veiculo" action="#{modeloBean.salva}" update=":frmModeloVeiculo :tableModeloVeiculo"/>
+			<p:commandButton value="Salvar modelo de veiculo" action="#{modeloBean.salva}" update="@form"/>
+			
+			<p:dataTable id="tableModeloVeiculo" value="#{modeloBean.modelos}" var="modelo">
+		
+				<p:column headerText="ID">
+					<h:outputLabel value="#{modelo.id}" />
+				</p:column>
+				
+				<p:column headerText="Nome">
+					<h:outputLabel value="#{modelo.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Categoria">
+					<h:outputLabel value="#{modelo.categoria}" />
+				</p:column>
+				
+				<p:column style="width: 100px; text-align: center">
+	    			<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{modeloBean.excluir}"
+							process="@this" update="@form">
+						<f:setPropertyActionListener target="#{modeloBean.modeloSelecionado}" value="#{modelo}" />
+					</p:commandButton>
+	    		</p:column>
+			</p:dataTable>
 		</h:form>
-		
-		<p:dataTable id="tableModeloVeiculo" value="#{modeloBean.modelos}" var="modelo">
-			<p:column headerText="ID">
-				<h:outputLabel value="#{modelo.id}" />
-			</p:column>
-			<p:column headerText="Nome">
-				<h:outputLabel value="#{modelo.descricao}" />
-			</p:column>
-			<p:column headerText="Categoria">
-				<h:outputLabel value="#{modelo.categoria}" />
-			</p:column>
-		</p:dataTable>
-		
 	</ui:define>
 </ui:composition>

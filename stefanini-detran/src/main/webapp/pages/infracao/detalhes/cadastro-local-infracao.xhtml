@@ -15,7 +15,7 @@
 					<p:inputText id="desc" value="#{localInfracaoBean.local.descricaoLocalInfracao}" />
 					
 					<p:outputLabel value="Velocidade permitida: " for="vel" />
-					<p:inputText id="vel" value="#{localInfracaoBean.local.velocidadePermitida}" />
+					<p:inputMask id="vel" value="#{localInfracaoBean.local.velocidadePermitida}" mask="999"/>
 				</p:panelGrid>
 				<br />
 				<p:commandButton value="Cadastrar" action="#{localInfracaoBean.cadastrar()}" />

@@ -74,7 +74,11 @@ public class ProprietarioBean implements Serializable {
 	}
 	
 	public void buscarProprietarioComTelefone(){
-		proprietarioSelecionado = this.proprietarioService.comTelefone(proprietarioSelecionado.getId());
+		try {
+			proprietarioSelecionado = this.proprietarioService.comTelefone(proprietarioSelecionado.getId());
+		} catch (Exception e) {
+			FacesUtil.adicionarMensagemErro(e.getMessage());
+		}
 	}
 	
 	private void limparFormulario() {

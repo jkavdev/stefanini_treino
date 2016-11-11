@@ -12,58 +12,58 @@
 	
 	<h:body>
 	
-	<header>
-		<h:graphicImage library="images" name="logo.jpg" width="100px;" />
-	</header>
+		<header>
+			<h:graphicImage library="images" name="logo.png" width="200px;" />
+		</header>
  
-	<p:megaMenu orientation="horizontal" style="margin-top:20px; margin-bottom:20px; ">
-	    <p:submenu label="Agentes" icon="ui-icon-check">
-	        <p:column>
-	            <p:submenu label="Cadastro">
-	                <p:menuitem value="Cadastro de agente" url="/pages/agente/cadastro-agente.xhtml" />
-	            </p:submenu>
-	        </p:column>
-	    </p:submenu>
-	 	<p:submenu label="Proprietário" icon="ui-icon-check">
-	        <p:column>
-	            <p:submenu label="Cadastro">
-	                <p:menuitem value="Cadastro de proprietario" url="/pages/proprietario/cadastro-proprietario.xhtml" />
-	            </p:submenu>
-	            <p:submenu label="Listagem">
-	                <p:menuitem value="Listagem de proprietario" url="/pages/proprietario/lista-proprietario.xhtml" />
-	            </p:submenu>
-	        </p:column>
-	    </p:submenu>
-	    <p:submenu label="Modelo" icon="ui-icon-check">
-	        <p:column>
-	            <p:submenu label="Cadastro">
-	                <p:menuitem value="Cadastro de modelo de veiculo" url="/pages/veiculo/modelo/cadastro-modelo-veiculo.xhtml" />
-	            </p:submenu>
-	        </p:column>
-	    </p:submenu>
-	    <p:submenu label="Veiculo" icon="ui-icon-check">
-	        <p:column>
-	            <p:submenu label="Cadastro">
-	                <p:menuitem value="Cadastro de veiculo" url="/pages/veiculo/cadastro-veiculo.xhtml" />
-	            </p:submenu>
-	        </p:column>
-	    </p:submenu>
-	    <p:submenu label="Infração" icon="ui-icon-check">
-	        <p:column>
-	            <p:submenu label="Cadastro">
-	                <p:menuitem value="Cadastro do local da Infração" url="/pages/infracao/detalhes/cadastro-local-infracao.xhtml" />
-	                <p:menuitem value="Cadastro do tipo da Infração" url="/pages/detalhes/infracao/cadastro-tipo-infracao.xhtml" />
-	                <p:menuitem value="Cadastro da Infração" url="/pages/infracao/cadastro-infracao.xhtml" />
-	            </p:submenu>
-	        </p:column>
-	    </p:submenu>
-	 	
-	    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
-	</p:megaMenu>
+ 		<div>
+			<p:megaMenu orientation="horizontal" style="margin-top:20px; margin-bottom:20px; ">
+			    <p:submenu label="Agentes" >
+			        <p:column>
+			            <p:submenu >
+			                <p:menuitem value="Cadastro de agente" url="/pages/agente/cadastro-agente.xhtml" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			 	<p:submenu label="Proprietário" >
+			        <p:column>
+			            <p:submenu >
+			                <p:menuitem value="Cadastro de proprietario" url="/pages/proprietario/cadastro-proprietario.xhtml" />
+			                <p:menuitem value="Listagem de proprietario" url="/pages/proprietario/lista-proprietario.xhtml" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			    <p:submenu label="Modelo" >
+			        <p:column>
+			            <p:submenu >
+			                <p:menuitem value="Cadastro de modelo veiculo" url="/pages/veiculo/modelo/cadastro-modelo-veiculo.xhtml" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			    <p:submenu label="Veiculo" >
+			        <p:column>
+			            <p:submenu >
+			                <p:menuitem value="Cadastro de veiculo" url="/pages/veiculo/cadastro-veiculo.xhtml" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			    <p:submenu label="Infração">
+			        <p:column>
+			            <p:submenu >
+			                <p:menuitem value="Cadastro do local Infração" url="/pages/infracao/detalhes/cadastro-local-infracao.xhtml" />
+			                <p:menuitem value="Cadastro do tipo Infração" url="/pages/detalhes/infracao/cadastro-tipo-infracao.xhtml" />
+			                <p:menuitem value="Cadastro da Infração" url="/pages/infracao/cadastro-infracao.xhtml" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			</p:megaMenu>
+		</div>
 	
-		<p:panel id="sistemaDetran" style="margin-bottom:20px">
-			<ui:insert name="corpo" />
-		</p:panel>
+		<div>
+			<p:panel style="margin-bottom:20px">
+				<ui:insert name="corpo" />
+			</p:panel>
+		</div>
 		
 	</h:body>
 </html>
