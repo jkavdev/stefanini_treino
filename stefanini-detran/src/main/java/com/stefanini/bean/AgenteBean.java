@@ -62,6 +62,7 @@ public class AgenteBean implements Serializable {
 		agente = new Agente();
 		agentes = null;
 		dataContratacao = null;
+		verificado = false;
 	}
 
 	public void verificar() {
