@@ -53,7 +53,7 @@ public class ProprietarioService {
 				this.proprietarioRepository.excluir(proprietario);
 			}
 		} catch (Exception e) {
-			throw new Exception("Proprietario não pode ser excluído!");
+			throw new Exception("Proprietario não pode ser excluído!" + e.getMessage());
 		}
 	}
 

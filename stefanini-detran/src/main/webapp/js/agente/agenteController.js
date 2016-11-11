@@ -11,6 +11,7 @@ App.controller('AgenteCtrl', function($scope, AgenteService, $route,$routeParams
 	},function(data){
 		console.log("data", data);
 	});
+	
 	$scope.agenteEditar = EnvioService.getParametro();
 	
 	$scope.deletar = function(item){

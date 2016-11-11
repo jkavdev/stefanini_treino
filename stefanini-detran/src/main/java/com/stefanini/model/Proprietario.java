@@ -41,7 +41,7 @@ public class Proprietario implements Serializable {
 	private Date dataNascimento;
 	@Embedded
 	private Endereco endereco = new Endereco();
-	@OneToMany(mappedBy = "proprietario", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Telefone> telefones;
 
 	public Long getId() {

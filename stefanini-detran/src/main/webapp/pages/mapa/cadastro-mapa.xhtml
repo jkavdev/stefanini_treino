@@ -10,65 +10,81 @@
 			<h:form id="frm">
 				<p:growl id="messages" showDetail="true" />
 
-				<p:gmap id="gmap" center="36.890257,30.707417" zoom="13"
-					type="HYBRID" style="width:100%;height:400px"
-					model="#{addMarkersView.emptyModel}"
-					onPointClick="handlePointClick(event);" widgetVar="map" />
+				<p:gmap id="gmap" center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:100%;height:400px"
+					model="#{mapaLocal.emptyModel}" onPointClick="handlePointClick(event);" widgetVar="map" />
 
 				<p:dialog widgetVar="dlg" showEffect="fade">
 					<h:form prependId="false">
 						<h:panelGrid columns="2">
-							<h:outputLabel for="title" value="Title:" />
-							<p:inputText id="title" value="#{addMarkersView.title}" />
+							<h:outputLabel for="title" value="Descricao:" />
+							<p:inputText id="title" value="#{mapaLocal.local.descricaoLocalInfracao}" />
 
 							<f:facet name="footer">
-								<p:commandButton value="Add"
-									actionListener="#{addMarkersView.addMarker}"
-									update=":frm:messages" oncomplete="markerAddComplete()" />
-								<p:commandButton value="Cancel" onclick="return cancel()" />
+								<p:commandButton value="Adicionar" actionListener="#{mapaLocal.addMarker}" update=":frm" oncomplete="markerAddComplete()" />
+								<p:commandButton value="Cancelar" onclick="return cancel()" />
 							</f:facet>
 						</h:panelGrid>
 
-						<h:inputHidden id="lat" value="#{addMarkersView.lat}" />
-						<h:inputHidden id="lng" value="#{addMarkersView.lng}" />
+						<h:inputHidden id="lat" value="#{mapaLocal.lat}" />
+						<h:inputHidden id="lng" value="#{mapaLocal.lng}" />
 					</h:form>
 				</p:dialog>
 
 				<script type="text/javascript">
-    var currentMarker = null;
- 
-    function handlePointClick(event) {
-        if(currentMarker === null) {
-            document.getElementById('lat').value = event.latLng.lat();
-            document.getElementById('lng').value = event.latLng.lng();
- 
-            currentMarker = new google.maps.Marker({
-                position:new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())
-            });
- 
-            PF('map').addOverlay(currentMarker);
- 
-            PF('dlg').show();
-        }   
-    }
- 
-    function markerAddComplete() {
-        var title = document.getElementById('title');
-        currentMarker.setTitle(title.value);
-        title.value = "";
- 
-        currentMarker = null;
-        PF('dlg').hide();
-    }
- 
-    function cancel() {
-        PF('dlg').hide();
-        currentMarker.setMap(null);
-        currentMarker = null;
- 
-        return false;
-    }
-</script>
+				    var currentMarker = null;
+				 
+				    function handlePointClick(event) {
+				        if(currentMarker === null) {
+				            document.getElementById('lat').value = event.latLng.lat();
+				            document.getElementById('lng').value = event.latLng.lng();
+				 
+				            currentMarker = new google.maps.Marker({
+				                position:new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())
+				            });
+				 
+				            PF('map').addOverlay(currentMarker);
+				 
+				            PF('dlg').show();
+				        }   
+				    }
+				 
+				    function markerAddComplete() {
+				        var title = document.getElementById('title');
+				        currentMarker.setTitle(title.value);
+				        title.value = "";
+				 
+				        currentMarker = null;
+				        PF('dlg').hide();
+				    }
+				 
+				    function cancel() {
+				        PF('dlg').hide();
+				        currentMarker.setMap(null);
+				        currentMarker = null;
+				 
+				        return false;
+				    }
+				</script>
+				
+				<p:panel>
+					<h:form id="formulario-local">
+						<h:outputText value="Cadastrar Local infração" />
+						<p:panelGrid columns="2">
+							<h:outputLabel value="Descrição Local: " for="desc" />
+							<h:inputText id="desc" value="#{mapaLocal.local.descricaoLocalInfracao}" />
+		
+							<h:outputLabel value="Latitude: " for="lt" />
+							<h:inputText id="lt" value="#{mapaLocal.lat}" />
+							<h:outputLabel value="Longitude: " for="lg" />
+							<h:inputText id="lg" value="#{mapaLocal.lng}" />
+							<h:outputLabel value="Velocidade permitida: " for="vel" />
+							<h:inputText id="vel" value="#{mapaLocal.local.velocidadePermitida}" />
+						</p:panelGrid>
+						<br />
+						<p:commandButton value="Cadastrar"
+							action="#{mapaLocal.cadastrar}" />
+					</h:form>
+				</p:panel>
 			</h:form>
 		</p:panel>
 	</ui:define>

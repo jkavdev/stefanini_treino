@@ -22,6 +22,8 @@ public class LocalInfracao implements Serializable {
 	private String descricaoLocalInfracao;
 	@Column(name = "velocidade_permitida", precision = 4, scale = 0)
 	private Double velocidadePermitida;
+	private Double latitude;
+	private Double longitude;
 
 	public LocalInfracao() {
 	}
@@ -48,6 +50,22 @@ public class LocalInfracao implements Serializable {
 
 	public void setVelocidadePermitida(Double velocidadePermitida) {
 		this.velocidadePermitida = velocidadePermitida;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 }
