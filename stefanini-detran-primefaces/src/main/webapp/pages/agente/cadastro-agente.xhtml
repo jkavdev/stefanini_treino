@@ -42,11 +42,22 @@
 					<p:outputLabel value="#{agente.tempoServico}" />
 				</p:column>
 				<p:column headerText="Opções">
-					<p:commandButton action="#{agenteBean.excluir}" value="Excluir" update="tableAgente">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show();"
+							process="@this" update=":frmAgente:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener value="#{agente}" target="#{agenteBean.agenteSelecionado}" />
 					</p:commandButton>
 				</p:column>
+				
 			</p:dataTable>
+ 
+		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+	        		message="Tem certeza que deseja excluir o agente #{agenteBean.agenteSelecionado.nome}?"  
+	                header="Exclusão de fabricante" severity="alert">
+	        	<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	        	<p:commandButton value="Sim" update=":frmAgente:tableAgente"
+	        			oncomplete="PF('confirmacaoExclusao').hide(); return false;" action="#{agenteBean.excluir}" />
+	    	</p:confirmDialog>
+			
 		</h:form>
 	</ui:define>
 
