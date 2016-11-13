@@ -42,10 +42,13 @@
 					<p:outputLabel value="#{agente.tempoServico}" />
 				</p:column>
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-pencil" title="Editar" process="@this" update="@form">
+						<f:setPropertyActionListener value="#{agente}" target="#{agenteBean.agente}" />
+					</p:commandButton>
 					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show();"
 							process="@this" update=":frmAgente:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener value="#{agente}" target="#{agenteBean.agenteSelecionado}" />
-					</p:commandButton>
+					</p:commandButton>					
 				</p:column>
 				
 			</p:dataTable>

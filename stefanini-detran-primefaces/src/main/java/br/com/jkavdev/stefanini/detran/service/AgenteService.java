@@ -24,7 +24,11 @@ public class AgenteService {
 			throw new NegocioException("Nome do agente é obrigatório!");
 		}
 
-		this.agenteDao.salvar(agente);
+		if (agente.getId() == null) {
+			this.agenteDao.alterar(agente);
+		} else {
+			this.agenteDao.salvar(agente);
+		}
 	}
 
 	public List<Agente> buscarTodos() {
@@ -35,10 +39,14 @@ public class AgenteService {
 		return agenteDao.buscarPorId(id);
 	}
 
+	public void alterar(Agente agente) {
+		agenteDao.alterar(agente);
+	}
+
 	public void remover(Agente agenteSelecionado) throws NegocioException {
 		try {
 			agenteSelecionado = buscarPorId(agenteSelecionado.getId());
-			
+
 			agenteDao.remover(agenteSelecionado);
 		} catch (PersistenceException e) {
 			throw new NegocioException("Agente não pôde ser excluído!: " + e.getMessage());
