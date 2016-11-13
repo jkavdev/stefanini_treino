@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/pages/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Agentes</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Cadastro de Agentes</h1>
+
+		<h:form id="frmAgente" style="margin-top: 10px;">
+
+			<p:messages id="mensagens" autoUpdate="true" closable="true" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome: " />
+				<p:inputText value="#{agenteBean.agente.nome}" />
+
+				<p:outputLabel value="Data de Contratação: " />
+				<p:calendar value="#{agenteBean.agente.dataContratacao}" />
+			</p:panelGrid>
+
+			<p:commandButton action="#{agenteBean.salvar}" value="Salvar Agente"
+				update="@form" style="margin-top: 10px;" />
+				
+			<p:dataTable id="tableAgente" value="#{agenteBean.agentes}" var="agente" style="margin-top: 10px;">
+				<p:column headerText="ID">
+					<p:outputLabel value="#{agente.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<p:outputLabel value="#{agente.nome}" />
+				</p:column>
+				<p:column headerText="Data de Contratação">
+					<p:outputLabel value="#{agente.dataContratacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="Tempo de Serviço">
+					<p:outputLabel value="#{agente.tempoServico}" />
+				</p:column>
+				<p:column headerText="Opções">
+					<p:commandButton action="#{agenteBean.excluir}" value="Excluir" update="tableAgente">
+						<f:setPropertyActionListener value="#{agente}" target="#{agenteBean.agenteSelecionado}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
