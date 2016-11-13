@@ -1,5 +1,8 @@
 package br.com.jkavdev.stefanini.detran.service.impl;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -44,6 +47,20 @@ public class AgenteServiceImpl extends GenericServiceImpl<Agente, Long, IAgenteD
 		} catch (PersistenceException e) {
 			throw new ServiceException("Agente não pôde ser excluído!: " + e.getMessage());
 		}
+	}
+	
+	public boolean verificaData(Date dataContratacao) {
+		Calendar dataAVerificar = Calendar.getInstance();
+		dataAVerificar.setTime(dataContratacao);
+		
+		Calendar dataAtualMenosUmAno = Calendar.getInstance();
+		dataAtualMenosUmAno.add(Calendar.YEAR, -1);
+		
+		if (dataAVerificar.compareTo(dataAtualMenosUmAno) == -1) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }

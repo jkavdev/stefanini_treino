@@ -1,6 +1,7 @@
 package br.com.jkavdev.stefanini.detran.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,14 +21,19 @@ public class AgenteBean implements Serializable {
 
 	@Inject
 	private AgenteService agenteService;
+
 	@Inject
 	private Agente agente;
 	private List<Agente> agentes;
 	private Agente agenteSelecionado;
 
+	private Date dataContratacao;
+	private boolean habilitarTempoServico;
+
 	@PostConstruct
 	public void init() {
 		agentes = agenteService.buscarTodos();
+		dataContratacao = new Date();
 	}
 
 	public void salvar() {
@@ -57,7 +63,13 @@ public class AgenteBean implements Serializable {
 
 	private void limpaFormulario() {
 		this.agente = new Agente();
+		dataContratacao = new Date();
 		buscarLista();
+	}
+
+	public void verificaDataDeContratacao() {
+		habilitarTempoServico = agenteService.verificaData(dataContratacao);
+		agente.setDataContratacao(dataContratacao);
 	}
 
 	private void buscarLista() {
@@ -78,6 +90,22 @@ public class AgenteBean implements Serializable {
 
 	public void setAgente(Agente agente) {
 		this.agente = agente;
+	}
+
+	public Date getDataContratacao() {
+		return dataContratacao;
+	}
+
+	public void setDataContratacao(Date dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
+
+	public boolean isHabilitarTempoServico() {
+		return habilitarTempoServico;
+	}
+
+	public void setHabilitarTempoServico(boolean habilitarTempoServico) {
+		this.habilitarTempoServico = habilitarTempoServico;
 	}
 
 	public Agente getAgenteSelecionado() {

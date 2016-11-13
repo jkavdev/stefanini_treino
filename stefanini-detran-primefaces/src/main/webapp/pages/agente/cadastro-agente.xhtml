@@ -20,7 +20,12 @@
 				<p:inputText value="#{agenteBean.agente.nome}" />
 
 				<p:outputLabel value="Data de Contratação: " />
-				<p:calendar value="#{agenteBean.agente.dataContratacao}" />
+				<p:calendar value="#{agenteBean.dataContratacao}" >
+					<p:ajax update="@form" event="blur" listener="#{agenteBean.verificaDataDeContratacao}"/>
+				</p:calendar>
+				
+				<p:outputLabel id="tempoServicoo" for="tempoServicoi" value="Tempo de Serviço: " rendered="#{agenteBean.habilitarTempoServico}"/>
+				<p:inputText id="tempoServicoi" value="#{agenteBean.agente.tempoServico}" rendered="#{agenteBean.habilitarTempoServico}" />
 			</p:panelGrid>
 
 			<p:commandButton action="#{agenteBean.salvar}" value="Salvar Agente"
