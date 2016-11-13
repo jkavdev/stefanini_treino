@@ -10,7 +10,6 @@ import javax.inject.Named;
 
 import br.com.jkavdev.stefanini.detran.model.Agente;
 import br.com.jkavdev.stefanini.detran.service.AgenteService;
-import br.com.jkavdev.stefanini.detran.service.NegocioException;
 import br.com.jkavdev.stefanini.detran.util.FacesUtil;
 
 @Named
@@ -38,7 +37,7 @@ public class AgenteBean implements Serializable {
 			FacesUtil.addInfoMessage("Agente " + agente.getNome() + " cadastrado com sucesso!");
 
 			limpaFormulario();
-		} catch (NegocioException e) {
+		} catch (Exception e) {
 			FacesUtil.addErroMessage(e.getMessage());
 			e.printStackTrace();
 		}
@@ -49,8 +48,8 @@ public class AgenteBean implements Serializable {
 			agenteService.remover(agenteSelecionado);
 			agentes.remove(agenteSelecionado);
 
-			FacesUtil.addInfoMessage("Agente " + agenteSelecionado.getNome() + " removido com sucesso!");
-		} catch (NegocioException e) {
+			FacesUtil.addWarnMessage("Agente " + agenteSelecionado.getNome() + " removido com sucesso!");
+		} catch (Exception e) {
 			FacesUtil.addErroMessage(e.getMessage());
 			e.printStackTrace();
 		}
