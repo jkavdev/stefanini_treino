@@ -1,0 +1,89 @@
+<ui:composition template="/pages/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Novo proprietário</ui:define>
+
+	<ui:define name="corpo">
+
+		<h1>Novo proprietário</h1>
+
+		<h:form id="frmProprietario">
+		
+			<p:messages id="messages"  closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton action="#{cadastroProprietarioBean.salvar}" value="Salvar Proprietario" update="frmProprietario"/>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="pesquisa"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:fieldset legend="Proprietario" style="margin-bottom:20px; margin-top:20px">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome" value="#{cadastroProprietarioBean.proprietario.nome}"/>
+					
+					<p:outputLabel value="Sexo" for="sexo" />
+					<p:selectOneMenu id="sexo" value="#{cadastroProprietarioBean.proprietario.sexo}">
+						<f:selectItem itemLabel="Selecione o Sexo:" noSelectionOption="true"/>
+						<f:selectItems value="#{cadastroProprietarioBean.sexos}" var="sexo" itemValue="#{sexo}" itemLabel="#{sexo.descricao}"/>
+					</p:selectOneMenu>										
+					
+					<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
+					<p:calendar id="dataNascimento" value="#{cadastroProprietarioBean.proprietario.dataNascimento}"/>
+				</p:panelGrid>
+			</p:fieldset>	
+				
+								
+			<p:fieldset legend="Endereço" style="margin-bottom:20px">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Endereço" for="endereco" />
+					<p:inputText id="endereco" value="#{cadastroProprietarioBean.proprietario.endereco.endereco}"/>
+					
+					<p:outputLabel value="Bairro" for="bairro" />
+					<p:inputText id="bairro" value="#{cadastroProprietarioBean.proprietario.endereco.bairro}"/>
+					
+					<p:outputLabel value="Cidade" for="cidade" />
+					<p:inputText id="cidade" value="#{cadastroProprietarioBean.proprietario.endereco.cidade}"/>
+					
+					<p:outputLabel value="UF" for="uf" />
+					<p:inputText id="uf" value="#{cadastroProprietarioBean.proprietario.endereco.uf}"/>
+				</p:panelGrid>
+			</p:fieldset>
+			
+			<p:commandButton value="Adicionar telefone" type="button" onclick="PF('telefoneDialog').show();" />
+									
+		</h:form>
+		
+		<p:dialog header="Adicionar telefone" widgetVar="telefoneDialog" minHeight="40">			
+		    <h:form id="frmTelefone">
+		    	<p:messages closable="true" id="telefoneMessage"/>
+		    	
+				<p:panelGrid columns="2">
+					<p:outputLabel value="DDD" for="ddd" />
+					<p:inputMask id="ddd" value="#{cadastroProprietarioBean.telefone.ddd}" mask="(99)"/>
+					
+					<p:outputLabel value="Numero de Telefone" for="numero" />
+					<p:inputMask id="numero" value="#{cadastroProprietarioBean.telefone.numero}" mask="99999-9999"/>
+					
+					
+					<p:outputLabel value="Tipo do Telefone" for="tipoTelefone" />
+					<p:selectOneMenu id="tipoTelefone" value="#{cadastroProprietarioBean.telefone.tipo}">
+						<f:selectItem itemLabel="Selecione o tipo telefone:" noSelectionOption="true"/>
+						<f:selectItems value="#{cadastroProprietarioBean.tipoTelefones}" var="telefone" itemValue="#{telefone}" itemLabel="#{telefone.descricao}"/>
+					</p:selectOneMenu>
+					
+					<p:commandButton action="#{cadastroProprietarioBean.salvarTelefone}" value="Salvar Telefone" update="frmTelefone telefoneMessage" />
+					
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

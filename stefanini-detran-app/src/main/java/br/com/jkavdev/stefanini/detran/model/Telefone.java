@@ -2,6 +2,8 @@ package br.com.jkavdev.stefanini.detran.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -34,9 +36,9 @@ public class Telefone extends BaseEntity {
 	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
-
+	
 	@ManyToOne
-	@JoinColumn(name = "proprietario_id", nullable = false, unique = true, updatable = false)
+	@JoinColumn(name = "proprietario_id")
 	public Proprietario getProprietario() {
 		return proprietario;
 	}
@@ -46,6 +48,7 @@ public class Telefone extends BaseEntity {
 	}
 
 	@Column(name = "tipo_telefone", length = 20)
+	@Enumerated(EnumType.STRING)
 	public TipoTelefone getTipo() {
 		return tipo;
 	}
