@@ -1,0 +1,51 @@
+<ui:composition template="/pages/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Agentes</ui:define>
+    
+    <ui:define name="corpo">
+    	<h1>Pesquisa de Agentes</h1>
+    	
+    	<h:form id="frmPesquisa">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+    		
+    		<p:toolbar style="margin-top: 20px">
+    			<p:toolbarGroup>
+    				<p:commandButton value="Novo" id="botaoNovo" action="cadastro?faces-redirect=true"/>
+    			</p:toolbarGroup>
+    		</p:toolbar>
+    	
+	    	<p:dataTable id="agentesTable" value="#{pesquisaAgenteBean.agentes}" var="agente"
+		    		style="margin-top: 20px" emptyMessage="Nenhum agente encontrado." rows="20"
+		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+		    		
+		    		<p:column headerText="Código" style="text-align: center; width: 100px">
+		    			<h:outputText value="#{agente.id}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Nome">
+		    			<h:outputText value="#{agente.nome}" />
+		    		</p:column>
+		    		
+		    		<p:column style="width: 100px; text-align: center">
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show();"
+								process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener target="#{pesquisaAgenteBean.agenteSelecionado}" value="#{agente}" />
+						</p:commandButton>
+		    		</p:column>
+		    </p:dataTable>
+		    
+		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+	        		message="Tem certeza que deseja excluir o agente #{pesquisaAgenteBean.agenteSelecionado.nome}?"  
+	                header="Exclusão de agente" severity="alert">
+	        	<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	        	<p:commandButton value="Sim" update=":frmPesquisa:agentesTable"
+	        			oncomplete="PF('confirmacaoExclusao').hide(); return false;" action="#{pesquisaAgenteBean.excluir}" />
+	    	</p:confirmDialog>
+	    </h:form>
+    </ui:define>
+</ui:composition>

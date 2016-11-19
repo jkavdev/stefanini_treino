@@ -12,7 +12,7 @@ header {
 	margin-bottom: 20px;
 	height: 40px;
 
-	background-color: #efefef;
+	background-color: #545454;
 	color: #fff;
 	
 	t
@@ -25,7 +25,7 @@ header > div {
 }
 
 header > div > form{
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 #conteudo {
