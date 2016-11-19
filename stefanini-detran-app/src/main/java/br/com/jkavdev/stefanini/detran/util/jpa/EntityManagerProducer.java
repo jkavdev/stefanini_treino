@@ -1,4 +1,4 @@
-package br.com.jkavdev.stefanini.detran.util;
+package br.com.jkavdev.stefanini.detran.util.jpa;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
