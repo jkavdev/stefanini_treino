@@ -1,14 +1,5 @@
 package br.com.jkavdev.stefanini.detran.converter;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-
-import br.com.jkavdev.stefanini.detran.model.ModeloVeiculo;
-import br.com.jkavdev.stefanini.detran.repository.hibernate.HibernateModeloVeiculoDao;
-import br.com.jkavdev.stefanini.detran.util.cdi.CDIServiceLocator;
-
 //@FacesConverter(forClass = ModeloVeiculo.class)
 //public class ModeloVeiculoConverter implements Converter {
 //
