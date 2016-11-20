@@ -1,4 +1,5 @@
 <ui:composition template="/pages/template/layout-padrao.xhtml"
+<<<<<<< HEAD
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
@@ -68,6 +69,59 @@
     			<h:outputText value="Nenhum telefone" rendered="#{empty pesquisaProprietarioBean.proprietarioSelecionado.telefones}"/>
 			</p:dialog>
 	    	
+=======
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de locais de infrações</ui:define>
+    
+    <ui:define name="corpo">
+    	<h1>Pesquisa de locais de infrações</h1>
+    	
+    	<h:form id="frmPesquisa">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+    		
+    		<p:toolbar style="margin-top: 20px">
+    			<p:toolbarGroup>
+    				<p:commandButton value="Novo" id="botaoNovo" action="cadastro?faces-redirect=true"/>
+    			</p:toolbarGroup>
+    		</p:toolbar>
+    	
+	    	<p:dataTable id="localTable" value="#{pesquisaLocalInfracaoBean.localInfracoes}" var="local"
+		    		style="margin-top: 20px" emptyMessage="Nenhum tipo encontrado." rows="20"
+		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+		    		
+		    		<p:column headerText="Código" style="text-align: center; width: 100px">
+		    			<h:outputText value="#{local.id}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Descrição">
+		    			<h:outputText value="#{local.descricaoLocal}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Limite de Velocidade">
+		    			<h:outputText value="#{local.velocidadePermitida}" />
+		    		</p:column>
+		    		
+		    		<p:column style="width: 100px; text-align: center">
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show();"
+								process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener target="#{pesquisaLocalInfracaoBean.localInfracaoSelecionado}" value="#{local}" />
+						</p:commandButton>
+		    		</p:column>
+		    </p:dataTable>
+		    
+		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+	        		message="Tem certeza que deseja excluir o local?"  
+	                header="Exclusão de local" severity="alert">
+	        	<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	        	<p:commandButton value="Sim" update=":frmPesquisa:localTable"
+	        			oncomplete="PF('confirmacaoExclusao').hide(); return false;" action="#{pesquisaLocalInfracaoBean.excluir}" />
+	    	</p:confirmDialog>
+>>>>>>> branch 'master' of https://github.com/jkavdev/stefanini_treino.git
 	    </h:form>
     </ui:define>
 </ui:composition>
