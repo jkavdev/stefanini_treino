@@ -19,7 +19,7 @@ public class Telefone extends BaseEntity {
 	private Proprietario proprietario;
 	private TipoTelefone tipo;
 
-	@Column(name = "numero", length = 15, unique = true, nullable = false, updatable = false)
+	@Column(name = "numero", length = 15, nullable = false)
 	public String getNumero() {
 		return numero;
 	}
@@ -28,7 +28,7 @@ public class Telefone extends BaseEntity {
 		this.numero = numero;
 	}
 
-	@Column(name = "ddd", length = 5, unique = true, nullable = false, updatable = false)
+	@Column(name = "ddd", length = 5, nullable = false)
 	public String getDdd() {
 		return ddd;
 	}

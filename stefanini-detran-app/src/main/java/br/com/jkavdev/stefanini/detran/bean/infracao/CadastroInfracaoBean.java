@@ -1,4 +1,4 @@
-package br.com.jkavdev.stefanini.detran.bean.infracao.local;
+package br.com.jkavdev.stefanini.detran.bean.infracao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,10 +18,11 @@ import br.com.jkavdev.stefanini.detran.service.InfracaoService;
 import br.com.jkavdev.stefanini.detran.service.LocalInfracaoService;
 import br.com.jkavdev.stefanini.detran.service.TipoInfracaoService;
 import br.com.jkavdev.stefanini.detran.service.VeiculoService;
+import br.com.jkavdev.stefanini.detran.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
-public class CadasstroInfracaoBean implements Serializable {
+public class CadastroInfracaoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -58,7 +59,67 @@ public class CadasstroInfracaoBean implements Serializable {
 	}
 
 	public void salvar() {
-		infracaoService.salvar(infracao);
+		try {
+			infracao.setAgente(cadastrarAgente());
+			infracao.setLocalInfracao(cadastrarLocal());
+			infracao.setTipoInfracao(cadastrarTipo());
+			infracao.setVeiculo(cadastrarVeiculo());
+
+			infracaoService.salvar(infracao);
+			FacesUtil.addSuccessMessage("Infração salva com sucesso!");
+
+			limpaFormulario();
+		} catch (Exception e) {
+			FacesUtil.addErrorMessage(e.getMessage());
+		}
+	}
+
+	public void limpaFormulario() {
+		infracao = new Infracao();
+		agenteId = null;
+		localId = null;
+		tipoId = null;
+		veiculoId = null;
+	}
+
+	public Agente cadastrarAgente() {
+		for (Agente agente : agentes) {
+			if (agente.getId().equals(agenteId)) {
+				return agente;
+			}
+		}
+
+		return null;
+	}
+
+	public LocalInfracao cadastrarLocal() {
+		for (LocalInfracao local : locais) {
+			if (local.getId().equals(localId)) {
+				return local;
+			}
+		}
+
+		return null;
+	}
+
+	public TipoInfracao cadastrarTipo() {
+		for (TipoInfracao tipo : tipos) {
+			if (tipo.getId().equals(tipoId)) {
+				return tipo;
+			}
+		}
+
+		return null;
+	}
+
+	public Veiculo cadastrarVeiculo() {
+		for (Veiculo veiculo : veiculos) {
+			if (veiculo.getId().equals(veiculoId)) {
+				return veiculo;
+			}
+		}
+
+		return null;
 	}
 
 	public Infracao getInfracao() {
