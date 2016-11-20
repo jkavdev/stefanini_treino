@@ -9,6 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="titulo">Sistema de Locadora de Veículo</ui:insert></title>
         <h:outputStylesheet library="css" name="sistema.css" />
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyDS3mIFEXQ4xwqr2NpB0dMysmmVRpIlCVQ" type="text/javascript"></script>
+        <h:outputScript library="js" name="google.maps.js" />
 	</h:head>
 
 	<h:body>
@@ -36,7 +38,7 @@
 							<p:menuitem value="Proprietário" outcome="/pages/proprietario/cadastro"/>
 							<p:submenu label="Infração">
 								<p:menuitem value="Tipo da infração" outcome="/pages/infracao/tipo/cadastro"/>
-								<p:menuitem value="Local da infração" outcome="/pages/infracao/local/cadastro"/>
+								<p:menuitem value="Local da infração" outcome="/pages/infracao/local/cadastro-local"/>
 							</p:submenu>
 							<p:submenu label="Veículo">
 								<p:menuitem value="Modelo do veículo" outcome="/pages/modeloVeiculo/cadastro"/>
