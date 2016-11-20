@@ -38,6 +38,12 @@
 					<f:selectItem itemLabel="Selecione o modelo"/>
 					<f:selectItems value="#{cadastroVeiculoBean.modelos}" var="modelo" itemLabel="#{modelo.descricao}" itemValue="#{modelo.id}"/>
 				</p:selectOneMenu>
+				
+				<p:outputLabel value="Proprietário" for="proprietario" />
+				<p:selectOneMenu id="proprietario" value="#{cadastroVeiculoBean.proprietarioId}">
+					<f:selectItem itemLabel="Selecione o proprietário"/>
+					<f:selectItems value="#{cadastroVeiculoBean.proprietarios}" var="proprietario" itemLabel="#{proprietario.nome}" itemValue="#{proprietario.id}"/>
+				</p:selectOneMenu>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

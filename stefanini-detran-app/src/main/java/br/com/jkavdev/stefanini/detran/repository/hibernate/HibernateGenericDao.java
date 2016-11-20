@@ -27,7 +27,7 @@ public class HibernateGenericDao<T, ID extends Serializable> implements GenericD
 
 	@Override
 	public void salvar(T entidade) {
-		this.manager.merge(entidade);
+		this.manager.persist(entidade);
 	}
 
 	@Override

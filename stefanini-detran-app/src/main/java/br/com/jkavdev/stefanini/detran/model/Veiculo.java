@@ -13,12 +13,11 @@ public class Veiculo extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	private String placa;
-
 	private ModeloVeiculo modelo;
 	private String uf;
 	private Proprietario proprietario;
 
-	@Column(name = "placa", length = 7, nullable = false, unique = true)
+	@Column(name = "placa", length = 9, nullable = false, unique = true)
 	public String getPlaca() {
 		return placa;
 	}

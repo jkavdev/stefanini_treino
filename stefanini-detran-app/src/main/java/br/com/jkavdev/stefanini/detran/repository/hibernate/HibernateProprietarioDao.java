@@ -14,5 +14,4 @@ public class HibernateProprietarioDao extends HibernateGenericDao<Proprietario, 
 				.setParameter("codigo", id)
 				.getSingleResult();
 	}
-
 }
