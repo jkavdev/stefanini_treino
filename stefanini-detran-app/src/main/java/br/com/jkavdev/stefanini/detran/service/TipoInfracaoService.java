@@ -34,7 +34,10 @@ public class TipoInfracaoService {
 		} catch (Exception e) {
 			throw new Exception("Tipo da infracao não pôde ser excluído!" + e.getMessage());
 		}
+	}
 
+	public List<TipoInfracao> infracoesComValor() {
+		return this.tipoInfracaoDao.infracoesComValorAlto();
 	}
 
 }
